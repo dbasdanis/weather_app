@@ -19,6 +19,7 @@
         .container {
             color: white;
             text-align: center;
+            display: none;
         }
 
         .temp-container {
@@ -61,6 +62,8 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             
+            const container = document.querySelector('.container');
+            
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition( function(position) {
                     const latitude = position.coords.latitude;
@@ -72,6 +75,9 @@
                         document.querySelector('#temp').innerHTML = `${data.main['temp'].toFixed(1)} °C`;
                         document.querySelector('#weather').innerHTML = data.weather[0]['main'];
                         document.querySelector('#weath_img').src = data.weather[0]['icon'];
+
+                        document.querySelector('#toggleButton').onclick = toggleTemperature;
+                        container.style.display = 'block';
                     })
                     .catch(error => {
                         console.log('Error:', error);
@@ -80,8 +86,6 @@
             } else {
                 console.log("Geolocation is not supported by this browser.")
             }
-
-            document.querySelector('#toggleButton').onclick = toggleTemperature;
 
         });
 
