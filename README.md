@@ -1,3 +1,5 @@
+![Weather App](https://github.com/dbasdanis/weather_app/blob/main/weather-app.png)
+
 ### Overview:
 The Weather App is a web application that provides real-time weather information based on the user's current location. It displays the current temperature, weather condition, and an icon representing the weather. Additionally, the app allows users to toggle between Celsius and Fahrenheit temperature units. Users can also access more detailed weather information by clicking the "More Info" button, which reveals additional data such as minimum temperature, maximum temperature, feels-like temperature, pressure, and humidity.
 
