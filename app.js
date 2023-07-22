@@ -18,9 +18,27 @@ function toggleTemperature() {
     
 }
 
+function createWeatherField(title, value) {
+    const moreInfoContainer = document.getElementById('moreInfoContainer');
+
+    const newField = document.createElement('div');
+    newField.classList.add('moreInfoField');
+
+    const titleElement = document.createElement('h3');
+    titleElement.textContent = title;
+
+    const valueElement = document.createElement('h3');
+    valueElement.textContent = value;
+
+    newField.appendChild(titleElement);
+    newField.appendChild(valueElement);
+    moreInfoContainer.appendChild(newField);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     
     const container = document.querySelector('.container');
+    const additionalData = {};
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition( function(position) {
@@ -34,8 +52,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('#weather').innerHTML = data.weather[0]['main'];
                 document.querySelector('#weath_img').src = data.weather[0]['icon'];
 
-                document.querySelector('#toggleButton').onclick = toggleTemperature;
+                document.querySelector('#tempButton').onclick = toggleTemperature;
                 container.style.display = 'block';
+
+                additionalData['Min Temperature:'] = `${data.main['temp_min'].toFixed(1)} °C`;
+                additionalData['Max Temperature:'] = `${data.main['temp_max'].toFixed(1)} °C`;
+                additionalData['Feels Like:'] = `${data.main['feels_like'].toFixed(1)} °C`;
+                additionalData['Pressure:'] = `${data.main['pressure']} hPa`;
+                additionalData['Humidity:'] = `${data.main['humidity']}%`;
+
+                document.querySelector('#moreInfoButton').onclick = function() {
+                    const moreInfoContainer = document.querySelector('#moreInfoContainer');
+                    moreInfoContainer.style.display = moreInfoContainer.style.display === 'none' ? 'block' : 'none';
+                    if (moreInfoContainer.style.display === 'block'){
+                        moreInfoContainer.innerHTML = '';
+
+                        for (const title in additionalData) {
+                            createWeatherField(title, additionalData[title]);
+                        }
+                    } 
+                };
+                
             })
             .catch(error => {
                 console.log('Error:', error);
