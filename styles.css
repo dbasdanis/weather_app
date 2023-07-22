@@ -1,0 +1,30 @@
+body {
+    background-color: rgb(34, 39, 45);
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+    margin-bottom: 100px;
+    color: rgb(255, 244, 228);
+}
+
+.container {
+    color: white;
+    text-align: center;
+    display: none;
+}
+
+.temp-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#toggleButton {
+    margin-left: 20px;
+    background-color: rgb(159, 196, 255);
+    border-radius: 1rem;
+    border-color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
