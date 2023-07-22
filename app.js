@@ -24,10 +24,10 @@ function createWeatherField(title, value) {
     const newField = document.createElement('div');
     newField.classList.add('moreInfoField');
 
-    const titleElement = document.createElement('h3');
+    const titleElement = document.createElement('h4');
     titleElement.textContent = title;
 
-    const valueElement = document.createElement('h3');
+    const valueElement = document.createElement('h4');
     valueElement.textContent = value;
 
     newField.appendChild(titleElement);
